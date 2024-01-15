@@ -1,17 +1,12 @@
-import React from 'react';
 import Layout from '../components/layout/Layout';
-import styled from '@emotion/styled';
 
 const Order = () => {
   return (
     <Layout>
-      <Main>Order</Main>
+      목록을 <br />
+      불러오고 있습니다.
     </Layout>
   );
 };
 
 export default Order;
-
-const Main = styled.main`
-  font-size: 16px;
-`;
