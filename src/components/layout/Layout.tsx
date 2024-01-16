@@ -19,7 +19,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  /* min-height: 100vh; */
 `;
 
 const Main = styled.main`
@@ -27,4 +26,5 @@ const Main = styled.main`
   flex: 1;
   overflow: auto;
   font-size: 18px;
+  padding: 0 24px 18px;
 `;
