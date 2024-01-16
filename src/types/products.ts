@@ -5,7 +5,3 @@ export type Product = {
   materialType: number;
   price: number;
 };
-
-export interface IProductList {
-  items: Product[];
-}

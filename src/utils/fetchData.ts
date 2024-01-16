@@ -1,7 +1,7 @@
-import { IProductList } from '../types/products';
+import { Product } from '../types/products';
 
 export const fetchProducts = () => {
-  let products: IProductList | null = null;
+  let products: Product[] | null = null;
   const suspender = fetch('http://localhost:3001/items')
     .then((response) => response.json())
     .then((data) => {
