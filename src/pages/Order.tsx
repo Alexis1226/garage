@@ -1,10 +1,15 @@
+import { Suspense } from 'react';
 import Layout from '../components/layout/Layout';
+import Loading from '../components/Loading';
+import OrderList from '../components/pages/order/OrderList';
+import { fetchProducts } from '../utils/fetchData';
 
 const Order = () => {
   return (
     <Layout>
-      목록을 <br />
-      불러오고 있습니다.
+      <Suspense fallback={<Loading />}>
+        <OrderList fetchedData={fetchProducts()} />
+      </Suspense>
     </Layout>
   );
 };
