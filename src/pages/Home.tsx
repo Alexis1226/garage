@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { RoundButton } from '../components';
+
 import logoImage from '../assets/images/logo-black_300.png';
+import RoundButton from '../components/buttons/RoundButton';
 
 const Home = () => {
   const handleClick = () => {
