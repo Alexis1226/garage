@@ -15,18 +15,18 @@ export default Header;
 
 const TopBar = styled.section`
   width: 100vw;
+  min-height: 57px;
   max-height: 80px;
-  aspect-ratio: 350/57;
+  aspect-ratio: 350 / 57;
   background-color: black;
-  /* width: 350px;
-  height: 57px; */
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
   & > div {
     display: flex;
     height: 100%;
     flex: 1;
     align-items: center;
-    padding: 12px;
+    padding: 12px 12px 13px;
 
     img {
       box-sizing: border-box;
