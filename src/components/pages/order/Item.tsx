@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { Product } from '../../../types/products';
 import Counter from './Counter';
+import { useCartStore } from '../../../zustand/cart';
 
 const Item = ({ resource }: { resource: Product }) => {
-  const { name, event, price } = resource;
-  const [count, setCount] = useState(0);
+  const { id, name, event, price } = resource;
+  const cart = useCartStore((state) => state.cart);
+
   return (
-    <ItemSection count={count}>
+    <ItemSection count={cart[id]}>
       <SquareSpace></SquareSpace>
       <ContentContainer>
         <ItemUpperSide>
@@ -15,7 +16,7 @@ const Item = ({ resource }: { resource: Product }) => {
           {!!event && <Badge>이벤트</Badge>}
         </ItemUpperSide>
         <ItemLowerSide>
-          <Counter count={count} setCount={setCount} />
+          <Counter id={id} />
           <span>{price.toLocaleString('ko-KR')}원</span>
         </ItemLowerSide>
       </ContentContainer>

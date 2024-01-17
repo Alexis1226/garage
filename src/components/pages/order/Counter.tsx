@@ -1,29 +1,28 @@
 import styled from '@emotion/styled';
 import { ChangeEvent } from 'react';
+import { useCartStore } from '../../../zustand/cart';
 
-const Counter = ({
-  count,
-  setCount,
-}: {
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+const Counter = ({ id }: { id: string }) => {
+  const { cart, addCart, subtractCart } = useCartStore();
+  const updateCart = useCartStore((state) => state.updateCart);
+
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const number = (event.target as HTMLInputElement).value;
-    setCount(Number(number));
+    const number = parseInt((event.target as HTMLInputElement).value);
+    updateCart(id, number);
   };
 
   const handleDecrease = () => {
-    if (count > 0) setCount((prev) => prev - 1);
+    subtractCart(id);
   };
+
   const handleIncrease = () => {
-    if (count < 999) setCount((prev) => prev + 1);
+    addCart(id);
   };
 
   return (
     <CounterSection>
       <button onClick={handleDecrease}>-</button>
-      <input type="number" value={count} min="0" max="999" onChange={onChange} />
+      <input type="number" value={cart[id] ? cart[id] : 0} min="0" max="999" onChange={onChange} />
       <button onClick={handleIncrease}>+</button>
     </CounterSection>
   );
