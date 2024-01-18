@@ -8,14 +8,16 @@ const initialState = {
 export const useCartStore = create<CartState>((set, get) => ({
   ...initialState,
   updateCart: (productId, count) => {
+    // input 창에서 수량 조정하는 경우 실행하는 함수
     set((state) => ({ cart: { ...state.cart, [productId]: count } }));
   },
   addCart: (productId) => {
+    // 수량 증가시키는 함수
     if (useCartStore.getState().cart[productId]) {
       set((state) => ({
         cart: {
           ...state.cart,
-          [productId]: state.cart[productId] < 999 ? state.cart[productId] + 1 : 999, // @todo
+          [productId]: state.cart[productId] < 999 ? state.cart[productId] + 1 : 999,
         },
       }));
     } else {
@@ -28,6 +30,7 @@ export const useCartStore = create<CartState>((set, get) => ({
     }
   },
   subtractCart: (productId) => {
+    // 수량 감소시키는 함수
     if (useCartStore.getState().cart[productId] > 1) {
       set((state) => ({
         cart: {

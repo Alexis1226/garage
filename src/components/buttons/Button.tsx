@@ -1,20 +1,23 @@
 import styled from '@emotion/styled';
-import React, { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
+import React, { ButtonHTMLAttributes, MouseEvent, ReactNode, Suspense } from 'react';
 
 interface ButtonProps {
+  isLoading?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
-  children: ReactNode;
+  children?: ReactNode;
 }
 
-const Button: React.FC<ButtonProps | ButtonHTMLAttributes<HTMLButtonElement>> = ({
+const Button = ({
+  isLoading = false,
   onClick,
   type = 'button',
   children,
   ...props
+}: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <DefaultButton type={type} onClick={onClick} {...props}>
-      {children}
+      <Suspense>{isLoading ? '로딩중...' : children}</Suspense>
     </DefaultButton>
   );
 };
