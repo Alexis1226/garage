@@ -2,13 +2,19 @@ import styled from '@emotion/styled';
 import { Product } from '../../../types/products';
 import Counter from './Counter';
 import { useCartStore } from '../../../zustand/cart';
+import { useState } from 'react';
 
 const Item = ({ resource }: { resource: Product }) => {
   const { id, name, event, price } = resource;
-  const cart = useCartStore((state) => state.cart);
+  const [inCart, setIsinCart] = useState(false);
+
+  // cart store suscriibe
+  useCartStore.subscribe((state) => {
+    setIsinCart(!!state.cart[id]);
+  });
 
   return (
-    <ItemSection count={cart[id]}>
+    <ItemSection exist={inCart}>
       <SquareSpace></SquareSpace>
       <ContentContainer>
         <ItemUpperSide>
@@ -26,13 +32,13 @@ const Item = ({ resource }: { resource: Product }) => {
 
 export default Item;
 
-const ItemSection = styled.div<{ count: number }>`
+const ItemSection = styled.div<{ exist: boolean }>`
   width: 100%;
   height: 80px;
   display: flex;
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  background: ${(props) => (props.count > 0 ? 'rgba(247, 90, 47, 0.10)' : 'white')};
+  background: ${(props) => (props.exist ? 'rgba(247, 90, 47, 0.10)' : 'white')};
   padding: 8px 12px;
   margin-top: 18px;
 `;

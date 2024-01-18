@@ -5,7 +5,7 @@ const initialState = {
   cart: {},
 };
 
-export const useCartStore = create<CartState>((set, get) => ({
+export const useCartStore = create<CartState>((set) => ({
   ...initialState,
   updateCart: (productId, count) => {
     // input 창에서 수량 조정하는 경우 실행하는 함수
