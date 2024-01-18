@@ -3,13 +3,17 @@ import React from 'react';
 import Button from '../buttons/Button';
 
 const Footer = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  let productIds: string[] = [];
   return (
     <FixedBottomSection>
       <TextDiv>
         <span>총 수량 : 0개</span>
         <span>총 가격 : 0원</span>
       </TextDiv>
-      <Button>주문하기</Button>
+      <Button isLoading={isLoading} onClick={handleClick} disabled={productIds.length === 0}>
+        주문하기
+      </Button>
     </FixedBottomSection>
   );
 };

@@ -11,9 +11,9 @@ const Button: React.FC<ButtonProps | ButtonHTMLAttributes<HTMLButtonElement>> = 
   onClick,
   type = 'button',
   children,
-}) => {
+  ...props
   return (
-    <DefaultButton type={type} onClick={onClick}>
+    <DefaultButton type={type} onClick={onClick} {...props}>
       {children}
     </DefaultButton>
   );
@@ -36,5 +36,6 @@ const DefaultButton = styled.button`
   &[disabled] {
     background: #c1c1c1;
     color: white;
+    cursor: not-allowed;
   }
 `;
