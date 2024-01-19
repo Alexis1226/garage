@@ -41,6 +41,8 @@ const Footer = () => {
     setIsLoading(true);
 
     setTimeout(() => {
+      // 결제 API 호출
+
       setIsLoading(false);
       resetCart();
     }, 2000);
