@@ -41,10 +41,15 @@ const Footer = () => {
     setIsLoading(true);
 
     setTimeout(() => {
+      try {
       // 결제 API 호출
 
       setIsLoading(false);
       resetCart();
+        navigate('/complete');
+      } catch (error) {
+        console.error(error);
+      }
     }, 2000);
   };
 
