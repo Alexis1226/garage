@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import React, { ButtonHTMLAttributes, MouseEvent, ReactNode, Suspense } from 'react';
+import { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
 
 interface ButtonProps {
+  disabled: boolean;
   isLoading?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
@@ -9,6 +10,7 @@ interface ButtonProps {
 }
 
 const Button = ({
+  disabled = false,
   isLoading = false,
   onClick,
   type = 'button',
@@ -16,8 +18,8 @@ const Button = ({
   ...props
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
-    <DefaultButton type={type} onClick={onClick} {...props}>
-      <Suspense>{isLoading ? '로딩중...' : children}</Suspense>
+    <DefaultButton type={type} onClick={onClick} {...props} disabled={isLoading || disabled}>
+      {isLoading ? '로딩중...' : children}
     </DefaultButton>
   );
 };
