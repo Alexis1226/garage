@@ -3,6 +3,7 @@ import Button from '../buttons/Button';
 import { useCartStore } from '../../zustand/cart';
 import { useEffect, useState } from 'react';
 import { Product } from '../../types/products';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +12,8 @@ const Footer = () => {
   const [totalCount, setTotalCount] = useState(0);
   const cart = useCartStore((state) => state.cart);
   const resetCart = useCartStore((state) => state.resetCart);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     let price = 0;
@@ -42,13 +45,13 @@ const Footer = () => {
 
     setTimeout(() => {
       try {
-      // 결제 API 호출
-
-      setIsLoading(false);
-      resetCart();
+        // 결제 API 호출
+        setIsLoading(false);
+        resetCart();
         navigate('/complete');
       } catch (error) {
         console.error(error);
+        navigate('/error');
       }
     }, 2000);
   };
